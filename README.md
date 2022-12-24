@@ -2,8 +2,9 @@
 
 Multiplayer snake game played localy using single keyboard. \
 \
-You can change the speed of the snakes using slider on the screen (will take effect in next game, current game will not be affected). Score is saved in the sessionStorage to prevent it from being reset on page refresh. There is a button to reset the score if that is desired effect.
-
+You can change the speed of the snakes using slider on the screen (will take effect in next game, current game will not be affected). Score is saved in the sessionStorage to prevent it from being reset on page refresh. There is a button to reset the score if that is desired effect. \
+\
+On game over screen, you can click restart button to start new game but you can also do the same using space or enter keys.
 
 ## Controls
 
