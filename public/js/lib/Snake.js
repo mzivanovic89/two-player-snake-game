@@ -7,10 +7,23 @@ var Snake = (function () {
         this.getHead = function () { return _this.head; };
         this.getHeadColor = function () { return _this.headColor; };
         this.getBodyColor = function () { return _this.bodyColor; };
-        this.includes = function (bodyPart) { return _this.bodyParts.includes(bodyPart); };
+        this.clearSnake = function () {
+            if (_this.bodyParts.length > 0) {
+                _this.bodyParts.forEach(function (bodyPart) { return bodyPart.remove(); });
+            }
+        };
+        this.includes = function (bodyPart, selfCheck) {
+            var findBodyPart = _this.bodyParts.filter(function (part, partIndex) {
+                if (selfCheck && partIndex === 0)
+                    return;
+                return part.top === bodyPart.top && part.left === bodyPart.left;
+            });
+            return findBodyPart.length > 0;
+        };
         this.addHead = function (top, left) {
             _this.head.setHead(false);
             var newHead = new DOMSnakePart(top, left, true, _this.headColor, _this.bodyColor);
+            _this.head = newHead;
             _this.bodyParts.unshift(newHead);
         };
         this.removeTail = function () {

@@ -14,6 +14,8 @@ var Player = (function () {
             _this.scoreboard.update(_this.score);
         };
         this.initBody = function () {
+            _this.snake.clearSnake();
+            _this.direction = _this.playerId === 1 ? DIRECTION.UP : DIRECTION.DOWN;
             var coordinates = _this.playerId === 1 ? PLAYER_DATA.PLAYER1.INITIAL_BODY : PLAYER_DATA.PLAYER2.INITIAL_BODY;
             _this.snake = new Snake(coordinates, _this.snake.getHeadColor(), _this.snake.getBodyColor());
         };
@@ -25,7 +27,7 @@ var Player = (function () {
                 _this.snake.removeTail();
             }
         };
-        this.includes = function (bodyPart) { return _this.snake.includes(bodyPart); };
+        this.includes = function (bodyPart, selfCheck) { return _this.snake.includes(bodyPart, selfCheck); };
         this.handleInput = function (key) {
             var newDirection = _this.controls[key];
             if (!newDirection)
@@ -41,6 +43,7 @@ var Player = (function () {
         this.direction = id === 1 ? DIRECTION.UP : DIRECTION.DOWN;
         this.controls = id === 1 ? PLAYER_DATA.PLAYER1.CONTROLS : PLAYER_DATA.PLAYER2.CONTROLS;
         this.scoreboard = new Scoreboard(this.playerId);
+        this.scoreboard.update(this.score);
         var coordinates = this.playerId === 1 ? PLAYER_DATA.PLAYER1.INITIAL_BODY : PLAYER_DATA.PLAYER2.INITIAL_BODY;
         var headColor = this.playerId === 1 ? PLAYER_DATA.PLAYER1.COLORS.head : PLAYER_DATA.PLAYER2.COLORS.head;
         var bodyColor = this.playerId === 1 ? PLAYER_DATA.PLAYER1.COLORS.body : PLAYER_DATA.PLAYER2.COLORS.body;

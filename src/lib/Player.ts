@@ -19,6 +19,7 @@ class Player {
     this.direction = id === 1 ? DIRECTION.UP : DIRECTION.DOWN;
     this.controls = id === 1 ? PLAYER_DATA.PLAYER1.CONTROLS : PLAYER_DATA.PLAYER2.CONTROLS;
     this.scoreboard = new Scoreboard(this.playerId);
+    this.scoreboard.update(this.score);
 
     // initialize body
     const coordinates = this.playerId === 1 ? PLAYER_DATA.PLAYER1.INITIAL_BODY : PLAYER_DATA.PLAYER2.INITIAL_BODY;
@@ -43,6 +44,12 @@ class Player {
   };
 
   public initBody = (): void => {
+    // clear previous snake parts if there are any
+    this.snake.clearSnake();
+
+    // reset direction
+    this.direction = this.playerId === 1 ? DIRECTION.UP : DIRECTION.DOWN;
+
     // get initial coordinates
     const coordinates = this.playerId === 1 ? PLAYER_DATA.PLAYER1.INITIAL_BODY : PLAYER_DATA.PLAYER2.INITIAL_BODY;
 
@@ -62,7 +69,7 @@ class Player {
     }
   };
 
-  public includes = (bodyPart: DOMSnakePart): boolean => this.snake.includes(bodyPart);
+  public includes = (bodyPart: DOMSnakePart, selfCheck: boolean): boolean => this.snake.includes(bodyPart, selfCheck);
 
   public handleInput = (key: string) => {
     const newDirection: DIRECTION | undefined = this.controls[key as keyof typeof this.controls];

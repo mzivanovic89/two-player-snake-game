@@ -56,7 +56,6 @@ class Game {
 
   public start = (): void => {
     this.intervalId = setInterval(this.loop, this.speed.getValueInMilliseconds());
-    // this.stop();
   };
 
   private stop = (): void => {
@@ -116,27 +115,27 @@ class Game {
     const player1head = player1.getHead();
     const player2head = player2.getHead();
 
-    const p1hit = player2.includes(player1head);
-    const p2hit = player1.includes(player2head);
+    // player 1 hit player 2 snake
+    const p1hitp2 = player2.includes(player1head, false);
+    // player 2 hit player 1 snake
+    const p2hitp1 = player1.includes(player2head, false);
+    // player 1 hit its own snake
+    const p1hitp1 = player1.includes(player1head, true);
+    // player 2 hit its own snake
+    const p2hitp2 = player2.includes(player2head, true);
 
-    if (p1hit && !p2hit) {
-      // player 1 won
-      player1.win();
-    }
-
-    if (p2hit && !p1hit) {
-      // player 2 won
+    if (p1hitp2 || p1hitp1) {
+      // player 1 hit its own snake or player 1 hit player 2 - player 2 wins
       player2.win();
     }
 
-    if (p1hit && p2hit) {
-      // draw
-      console.log('DRAW');
+    if (p2hitp1 || p2hitp2) {
+      // player 2 hit its own snake or player 2 hit player 1 - player 1 wins
       player1.win();
-      player2.win();
     }
 
-    if (p1hit || p2hit) {
+    // if anything is hit, end game
+    if (p1hitp2 || p2hitp1 || p1hitp1 || p2hitp2) {
       this.gameOver();
     }
   };

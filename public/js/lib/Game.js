@@ -67,20 +67,17 @@ var Game = (function () {
             var player2 = _this.players[1];
             var player1head = player1.getHead();
             var player2head = player2.getHead();
-            var p1hit = player2.includes(player1head);
-            var p2hit = player1.includes(player2head);
-            if (p1hit && !p2hit) {
-                player1.win();
-            }
-            if (p2hit && !p1hit) {
+            var p1hitp2 = player2.includes(player1head, false);
+            var p2hitp1 = player1.includes(player2head, false);
+            var p1hitp1 = player1.includes(player1head, true);
+            var p2hitp2 = player2.includes(player2head, true);
+            if (p1hitp2 || p1hitp1) {
                 player2.win();
             }
-            if (p1hit && p2hit) {
-                console.log('DRAW');
+            if (p2hitp1 || p2hitp2) {
                 player1.win();
-                player2.win();
             }
-            if (p1hit || p2hit) {
+            if (p1hitp2 || p2hitp1 || p1hitp1 || p2hitp2) {
                 _this.gameOver();
             }
         };

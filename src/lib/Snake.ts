@@ -25,7 +25,22 @@ class Snake {
 
   public getBodyColor = (): string => this.bodyColor;
 
-  public includes = (bodyPart: DOMSnakePart): boolean => this.bodyParts.includes(bodyPart);
+  public clearSnake = (): void => {
+    if (this.bodyParts.length > 0) {
+      this.bodyParts.forEach((bodyPart) => bodyPart.remove());
+    }
+  };
+
+  public includes = (bodyPart: DOMSnakePart, selfCheck: boolean): boolean => {
+    const findBodyPart = this.bodyParts.filter((part, partIndex) => {
+      // if selfCheck is true - checking if player hit his own body, so we are ignoring head
+      if (selfCheck && partIndex === 0) return;
+
+      return part.top === bodyPart.top && part.left === bodyPart.left;
+    });
+
+    return findBodyPart.length > 0;
+  };
 
   private addHead = (top: number, left: number): void => {
     // transform current head to body
@@ -33,6 +48,8 @@ class Snake {
 
     // create new head
     const newHead = new DOMSnakePart(top, left, true, this.headColor, this.bodyColor);
+
+    this.head = newHead;
 
     // add new head to the snake body
     this.bodyParts.unshift(newHead);
