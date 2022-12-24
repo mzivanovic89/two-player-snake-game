@@ -1,0 +1,11 @@
+import Game from './lib/Game.js';
+export var DOM_PLAYGROUND = document.getElementById('playground');
+export var DOM_SPEED_DISPLAY = document.getElementById('speed');
+export var DOM_SPEED_SLIDER = document.getElementById('speed-slider');
+export var DOM_RESTART_BUTTON = document.getElementById('restart');
+export var DOM_RESET_SCORE_BUTTON = document.getElementById('reset-score');
+export var DOM_SCORE_PLAYER_1 = document.getElementById('score-player-1');
+export var DOM_SCORE_PLAYER_2 = document.getElementById('score-player-2');
+export var DOM_END_SCREEN = document.getElementById('end-screen');
+var game = new Game();
+game.start();
