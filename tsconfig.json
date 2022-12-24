@@ -4,12 +4,12 @@
     "target": "es5",
     "lib": ["es6", "dom", "es2017"],
     "allowJs": true,
-    "outDir": "./public/js",
+    "outDir": "./build",
     "rootDir": "src",
     "strict": true,
     "noImplicitAny": true,
     "esModuleInterop": true,
     "removeComments": true
   },
-  "exclude": ["node_modules", "public/js/**/*"]
+  "exclude": ["node_modules", "build"]
 }

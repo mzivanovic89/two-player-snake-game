@@ -1,7 +1,7 @@
 import { DIRECTION } from './types.js';
 export var INITIAL_SPEED = 6;
 export var PLAYGROUND = { HEIGHT: 800, WIDTH: 1000 };
-export var SPEED_OF_GROWTH = 10;
+export var SPEED_OF_GROWTH = 2;
 export var PLAYER_SIZE = 10;
 export var SESSION_STORAGE_SPEED_NAME = 'speed';
 export var SESSION_STORAGE_SCORE_NAME = 'player_';

@@ -1,4 +1,4 @@
-import { PLAYGROUND } from '../config.js';
+import { PLAYGROUND, SPEED_OF_GROWTH } from '../config.js';
 import { DOM_END_SCREEN, DOM_PLAYGROUND, DOM_RESET_SCORE_BUTTON, DOM_RESTART_BUTTON, DOM_SPEED_SLIDER } from '../main.js';
 import Player from './Player.js';
 import Speed from './Speed.js';
@@ -19,7 +19,8 @@ var Game = (function () {
             _this.isRunning = true;
         };
         this.loop = function () {
-            var isSnakeGrowing = _this.tick === _this.speed.getValue();
+            var isSnakeGrowing = _this.tick === SPEED_OF_GROWTH;
+            console.log(isSnakeGrowing);
             _this.players.forEach(function (player) {
                 player.move(isSnakeGrowing);
             });

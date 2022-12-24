@@ -2,7 +2,7 @@ import { DIRECTION } from './types.js';
 
 export const INITIAL_SPEED = 6; // initial speed is SPEED_OPTIONS[6] (50ms)
 export const PLAYGROUND = { HEIGHT: 800, WIDTH: 1000 }; // in pixels
-export const SPEED_OF_GROWTH = 10; // higher number means slower growth - snake will increase in size every SPEED_OF_GROWTH frames
+export const SPEED_OF_GROWTH = 2; // higher number means slower growth - snake will increase in size every SPEED_OF_GROWTH frames
 export const PLAYER_SIZE = 10; // in pixels
 
 export const SESSION_STORAGE_SPEED_NAME = 'speed';
